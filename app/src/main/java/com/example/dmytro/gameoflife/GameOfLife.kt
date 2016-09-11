@@ -20,12 +20,17 @@ class GameOfLife : AppCompatActivity() {
         timer.schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
-                    grid.cells = game!!.nextGeneration()
-                    generationCounter++
-                    title = "$titleOfApp ($generationCounter)"
+                    nextStep()
                 }
             }
         }, 0, speedGame)
+    }
+
+    private fun nextStep() {
+        game = Game(grid.numRows, grid.numColumns, grid.cells)
+        grid.cells = game!!.nextGeneration()
+        generationCounter++
+        title = "$titleOfApp ($generationCounter)"
     }
 
     private fun stopGame() {
@@ -51,6 +56,10 @@ class GameOfLife : AppCompatActivity() {
         when (item!!.itemId) {
             R.id.start -> startGame()
             R.id.stop -> stopGame()
+            R.id.nextStep -> {
+                stopGame()
+                nextStep()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -7,6 +7,11 @@
         android:title="Stop"
         app:showAsAction="always" />
     <item
+        android:id="@+id/nextStep"
+        android:icon="@drawable/ic_skip_next_black_24dp"
+        android:title="Next"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/start"
         android:icon="@drawable/ic_play_arrow_black_24dp"
         android:title="Start"
