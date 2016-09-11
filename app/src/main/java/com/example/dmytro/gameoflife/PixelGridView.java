@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +34,11 @@ public class PixelGridView extends View {
     public void setNumColumns(int numColumns) {
         this.numColumns = numColumns;
         calculateDimensions();
+    }
+
+    public void setCells(boolean[][] cells) {
+        cellChecked = cells;
+        invalidate();
     }
 
     public boolean[][] getCells() {
