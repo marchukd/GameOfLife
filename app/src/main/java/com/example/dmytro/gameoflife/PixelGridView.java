@@ -9,14 +9,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Dmytro on 11.09.2016
  */
 public class PixelGridView extends View {
-    private int numColumns = 20, numRows;
+    private int numColumns = 15, numRows;
     private float cellWidth, cellHeight;
     private Paint blackPaint = new Paint();
     private boolean[][] cellChecked;
+    private List<List<Boolean>> mtrx;
 
     public PixelGridView(Context context) {
         this(context, null);
@@ -25,11 +29,16 @@ public class PixelGridView extends View {
     public PixelGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
         blackPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        calculateDimensions();
     }
 
     public void setNumColumns(int numColumns) {
         this.numColumns = numColumns;
         calculateDimensions();
+    }
+
+    public boolean[][] getCells() {
+        return cellChecked;
     }
 
     public int getNumColumns() {
@@ -47,7 +56,6 @@ public class PixelGridView extends View {
     }
 
     private void calculateDimensions() {
-
         cellWidth = (float) getWidth() / (float) numColumns;
         cellHeight = cellWidth;
         numRows = Math.round(getHeight() / cellHeight);
