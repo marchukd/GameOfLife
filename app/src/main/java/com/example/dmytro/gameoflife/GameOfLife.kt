@@ -15,8 +15,8 @@ class GameOfLife : AppCompatActivity() {
     private val speedGame: Long = 250
 
     private fun startGame() {
-
         game = Game(grid.numRows, grid.numColumns, grid.cells)
+        timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
